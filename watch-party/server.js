@@ -1,10 +1,16 @@
 const WebSocket = require('ws');
 const express = require('express');
+const path = require('path');
 const app = express();
 const server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
 
 app.use(express.static('public'));
+
+// Serve SPA for deep links like /room/:id
+app.get('/room/:id', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 const rooms = new Map();
 
 wss.on('connection', (ws) => {
@@ -28,7 +34,7 @@ wss.on('connection', (ws) => {
         case 'signal':
           rooms.get(ws.room)?.forEach(client => {
             if (client !== ws && client.readyState === WebSocket.OPEN) {
-              client.send(msg);
+              client.send(JSON.stringify({ type: 'signal', signal: data.signal }));
             }
           });
           break;
