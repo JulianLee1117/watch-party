@@ -1,0 +1,122 @@
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body { 
+  background: #0a0a0a; 
+  color: #fff; 
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#app {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.drop-zone {
+  border: 3px dashed #333;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: rgba(255,255,255,0.02);
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+  border-color: #0066ff;
+  background: rgba(0,102,255,0.05);
+  transform: scale(1.02);
+}
+
+.drop-zone p {
+  font-size: 18px;
+  color: #666;
+  pointer-events: none;
+}
+
+#fileInput {
+  display: none;
+}
+
+video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #000;
+}
+
+.status {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.9);
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  border: 1px solid #222;
+  z-index: 100;
+}
+
+.controls {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+button {
+  background: #0066ff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: #0052cc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,102,255,0.4);
+}
+
+#linkCopied {
+  color: #4caf50;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .drop-zone {
+    height: 300px;
+  }
+  
+  .controls {
+    bottom: 20px;
+  }
+  
+  button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
